@@ -29,13 +29,25 @@ public class 연결요소의개수 {
         int count = 0;
         for (int i = 1;i <= N; i++) {
             if (!visited[i]) {
-                visited[i] = true;
-                bfs(i);
                 count += 1;
+                dfs(i);
             }
         }
 
         System.out.println(count);
+    }
+    public static void dfs(int s) {
+        if (map.getOrDefault(s,new ArrayList<>()).size()>0){
+            visited[s] = true;
+            List<Integer> tem = map.get(s);
+
+            for (int i =0;i<tem.size(); i++) {
+                if (!visited[tem.get(i)]) {
+                    dfs(tem.get(i));
+                }
+            }
+        }
+
     }
     public static void bfs(int sum) {
         Queue<int[]> q = new LinkedList<>();
